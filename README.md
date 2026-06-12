@@ -1,70 +1,85 @@
-# Getting Started with Create React App
+# ✨ DIO Clone
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a React-based clone of the DIO learning platform. It demonstrates user authentication, content feed presentation, form validation, API integration via a local JSON server, and responsive UI components built with styled-components.
+
+## 🛠️ Features
+
+- Login screen with form validation using `react-hook-form` and `yup`
+- Protected feed page that loads user data and posts from a mock API
+- Reusable components for buttons, inputs, cards, and header layout
+- Local JSON server for API data simulation with `json-server`
+- Styled UI with `styled-components`
+- Client-side routing using `react-router-dom`
+
+## ⚡ Technologies Used
+
+![ReactJS](https://img.shields.io/badge/-ReactJS-121011?style=for-the-badge&logo=react)&nbsp;
+![Styled Components](https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white)&nbsp;
+![React Router DOM](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)&nbsp;
+
+## 🚀 How to Clone and Run the Project
+
+1. Clone the repository:
+
+![clone repo](github/clone-repo.png)
+
+2. Install dependencies:
+
+![install dependencies](github/install-dependencies.png)
+
+3. Start the mock API server:
+
+![start mock api](github/start-api.png)
+
+4. In a separate terminal, start the React development server:
+
+![start development server](github/start-development-server.png)
+
+## 🌐 View on hosting link
+
+Check out the website by clicking here [DIO Clone](https://trilha-react-modulo-3.vercel.app/)
 
 ## Available Scripts
 
-In the project directory, you can run:
+- `npm start` - Starts the React development server
+- `npm run api` - Runs the JSON server using `db.json` on port `8001`
+- `npm test` - Runs the test runner
+- `npm run build` - Builds the production-ready React app
 
-### `npm start`
+## Notes
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Ensure the API server is running before using the app so the feed and user data load correctly.
+- Adjust the mock data in `db.json` if you want to modify the API responses.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 👤 Author
 
-### `npm test`
+<table width="100%">
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<tr>
 
-### `npm run build`
+<td align="center">
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<a href="https://github.com/designtechti490">
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<img src="https://github.com/designtechti490.png" width="100px;" alt=""/>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<br />
 
-### `npm run eject`
+<sub>
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+<b>Marcelo Junior</b>
+          <i>Front End Developer</i>
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+</sub>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+</a>
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+</td>
 
-## Learn More
+</tr>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+</table>
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<p align="center"> Developed with 💜 during the React trail at Digital Innovation One. </p>
