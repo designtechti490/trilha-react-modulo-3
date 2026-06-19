@@ -1,13 +1,13 @@
-import React from 'react'
+import React from "react";
 
-import { ButtonContainer } from './styles';
+import { ButtonContainer } from "./styles";
 
-const Button = ({title, variant="primary", onClick}) => {
+const Button = ({ title, variant = "primary", onClick, ...rest }) => {
   return (
-    <ButtonContainer variant={variant} onClick={onClick}>
-        {title}
+    <ButtonContainer variant={variant} onClick={onClick} {...rest}>
+      {title}
     </ButtonContainer>
-  )
-}
+  );
+};
 
-export { Button }
+export { Button };

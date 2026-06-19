@@ -1,4 +1,4 @@
-import { MdEmail, MdLock } from "react-icons/md";
+import { MdEmail, MdLock, MdPerson } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -14,7 +14,6 @@ import {
   Column,
   Container,
   CriarText,
-  EsqueciText,
   Row,
   SubtitleLogin,
   Title,
@@ -24,6 +23,7 @@ import {
 
 const schema = yup
   .object({
+    name: yup.string().required("Campo obrigatório"),
     email: yup
       .string()
       .email("email não é valido")
@@ -35,7 +35,7 @@ const schema = yup
   })
   .required();
 
-const Login = () => {
+const Register = () => {
   const navigate = useNavigate();
 
   const {
@@ -49,14 +49,20 @@ const Login = () => {
 
   const onSubmit = async (formData) => {
     try {
-      const { data } = await api.get(
-        `users?email=${formData.email}&senha=${formData.password}`,
-      );
-      if (data.length === 1) {
-        navigate("/feed");
-      } else {
-        alert("Email ou senha inválido");
+      const { data } = await api.get(`users?email=${formData.email}`);
+      if (data.length > 0) {
+        alert("Já existe um usuário com este email");
+        return;
       }
+
+      await api.post("users", {
+        name: formData.name,
+        email: formData.email,
+        senha: formData.password,
+      });
+
+      alert("Cadastro realizado com sucesso!");
+      navigate("/login");
     } catch {
       alert("Houve um erro, tente novamente.");
     }
@@ -74,9 +80,18 @@ const Login = () => {
         </Column>
         <Column>
           <Wrapper>
-            <TitleLogin>Faça seu login</TitleLogin>
-            <SubtitleLogin>Faça seu login e make the change._</SubtitleLogin>
+            <TitleLogin>Cadastre-se</TitleLogin>
+            <SubtitleLogin>
+              Crie sua conta e faça parte da comunidade.
+            </SubtitleLogin>
             <form onSubmit={handleSubmit(onSubmit)}>
+              <Input
+                name="name"
+                errorMessage={errors?.name?.message}
+                control={control}
+                placeholder="Nome completo"
+                leftIcon={<MdPerson />}
+              />
               <Input
                 name="email"
                 errorMessage={errors?.email?.message}
@@ -92,12 +107,11 @@ const Login = () => {
                 type="password"
                 leftIcon={<MdLock />}
               />
-              <Button title="Entrar" variant="secondary" type="submit" />
+              <Button title="Cadastrar" variant="secondary" type="submit" />
             </form>
             <Row>
-              <EsqueciText>Esqueci minha senha</EsqueciText>
-              <CriarText onClick={() => navigate("/register")}>
-                Criar Conta
+              <CriarText onClick={() => navigate("/login")}>
+                Já possui conta? Faça login
               </CriarText>
             </Row>
           </Wrapper>
@@ -107,4 +121,4 @@ const Login = () => {
   );
 };
 
-export { Login };
+export { Register };
