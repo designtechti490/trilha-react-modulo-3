@@ -21,6 +21,7 @@ import {
   TitleLogin,
   Wrapper,
 } from "./styles";
+import { IFormData } from "./types";
 
 const schema = yup
   .object({
@@ -42,12 +43,12 @@ const Login = () => {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm({
-    resolver: yupResolver(schema),
+  } = useForm<IFormData>({
+    resolver: yupResolver(schema) as any, // TODO: Alterar tipagem do yupresolver
     mode: "onChange",
   });
 
-  const onSubmit = async (formData) => {
+  const onSubmit = async (formData: IFormData) => {
     try {
       const { data } = await api.get(
         `users?email=${formData.email}&senha=${formData.password}`,
@@ -74,7 +75,7 @@ const Login = () => {
         </Column>
         <Column>
           <Wrapper>
-            <TitleLogin>Faça seu login</TitleLogin>
+            <TitleLogin>Faça seu cadastro</TitleLogin>
             <SubtitleLogin>Faça seu login e make the change._</SubtitleLogin>
             <form onSubmit={handleSubmit(onSubmit)}>
               <Input
@@ -96,9 +97,7 @@ const Login = () => {
             </form>
             <Row>
               <EsqueciText>Esqueci minha senha</EsqueciText>
-              <CriarText onClick={() => navigate("/register")}>
-                Criar Conta
-              </CriarText>
+              <CriarText>Criar Conta</CriarText>
             </Row>
           </Wrapper>
         </Column>
