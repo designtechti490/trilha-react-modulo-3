@@ -21,6 +21,8 @@ import {
   Wrapper,
 } from "./styles";
 
+import { IFormData } from "./types";
+
 const schema = yup
   .object({
     name: yup.string().required("Campo obrigatório"),
@@ -47,7 +49,7 @@ const Register = () => {
     mode: "onChange",
   });
 
-  const onSubmit = async (formData) => {
+  const onSubmit = async (formData: IFormData) => {
     try {
       const { data } = await api.get(`users?email=${formData.email}`);
       if (data.length > 0) {
