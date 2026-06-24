@@ -97,7 +97,9 @@ const Login = () => {
             </form>
             <Row>
               <EsqueciText>Esqueci minha senha</EsqueciText>
-              <CriarText>Criar Conta</CriarText>
+              <CriarText onClick={() => navigate("/register")}>
+                Criar Conta
+              </CriarText>
             </Row>
           </Wrapper>
         </Column>
