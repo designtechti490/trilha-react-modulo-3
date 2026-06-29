@@ -1,5 +1,4 @@
 import { MdEmail, MdLock } from "react-icons/md";
-import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -7,8 +6,6 @@ import * as yup from "yup";
 import { Button } from "../../components/Button";
 import { Header } from "../../components/Header";
 import { Input } from "../../components/Input";
-
-import { api } from "../../services/api";
 
 import {
   Column,
@@ -22,6 +19,8 @@ import {
   Wrapper,
 } from "./styles";
 import { IFormData } from "./types";
+
+import { useAuth } from "../../hooks/useAuth";
 
 const schema = yup
   .object({
@@ -37,7 +36,7 @@ const schema = yup
   .required();
 
 const Login = () => {
-  const navigate = useNavigate();
+  const { handleLogin } = useAuth();
 
   const {
     control,
@@ -49,18 +48,7 @@ const Login = () => {
   });
 
   const onSubmit = async (formData: IFormData) => {
-    try {
-      const { data } = await api.get(
-        `users?email=${formData.email}&senha=${formData.password}`,
-      );
-      if (data.length === 1) {
-        navigate("/feed");
-      } else {
-        alert("Email ou senha inválido");
-      }
-    } catch {
-      alert("Houve um erro, tente novamente.");
-    }
+    handleLogin(formData);
   };
 
   return (
@@ -97,7 +85,7 @@ const Login = () => {
             </form>
             <Row>
               <EsqueciText>Esqueci minha senha</EsqueciText>
-              <CriarText onClick={() => navigate("/register")}>
+              <CriarText as="a" href="/register">
                 Criar Conta
               </CriarText>
             </Row>

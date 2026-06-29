@@ -1,6 +1,7 @@
 import logo from "../../assets/logo-dio.png";
 import { Button } from "../Button";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth";
 
 import {
   BuscarInputContainer,
@@ -12,25 +13,19 @@ import {
   UserPicture,
   Wrapper,
 } from "./styles";
-import { IHeader } from "./types";
 
-const Header = ({ autenticado }: IHeader) => {
+const Header = () => {
+  const { user, handleSignOut } = useAuth();
   const navigate = useNavigate();
-
-  const handleSignIn = () => {
-    navigate("/login");
-  };
-
-  const handleSignUp = () => {
-    navigate("/register");
-  };
 
   return (
     <Wrapper>
       <Container>
         <Row>
-          <img src={logo} alt="Logo da dio" />
-          {autenticado ? (
+          <Link to="/">
+            <img src={logo} alt="Logo da dio" />
+          </Link>
+          {user.id ? (
             <>
               <BuscarInputContainer>
                 <Input as="input" placeholder="Buscar..." />
@@ -41,19 +36,20 @@ const Header = ({ autenticado }: IHeader) => {
           ) : null}
         </Row>
         <Row>
-          {autenticado ? (
-            <UserPicture
-              as="img"
-              src="https://avatars.githubusercontent.com/u/45184516?v=4"
-              alt="Foto do usuário"
-            />
+           {user.id ? (
+            <>
+              <UserPicture src="https://avatars.githubusercontent.com/u/45184516?v=4" />{" "}
+              <a href="#" onClick={handleSignOut}>
+                Sair
+              </a>
+            </>
           ) : (
             <>
-              <MenuRight as="a" onClick={() => navigate("/")}>
+              <MenuRight href='/'>
                 Home
               </MenuRight>
-              <Button title="Entrar" onClick={handleSignIn} />
-              <Button title="Cadastrar" onClick={handleSignUp} />
+              <Button title="Entrar" onClick={() => {navigate('/login')}} />
+              <Button title="Cadastrar" onClick={() => {navigate('/register')}} />
             </>
           )}
         </Row>
